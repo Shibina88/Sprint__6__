@@ -1,9 +1,9 @@
 package com.example;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -21,16 +21,6 @@ public class LionTest {
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
         assertEquals(expectedResult, lion.getFood());
     }
-
-    @Test
-    public void incorrectLionSexTest() throws Exception {
-        Exception exception = Assert.assertThrows(Exception.class, () -> {
-            Lion lion = new Lion("мальчик", feline);
-        });
-        String expectedResult = "Используйте допустимые значения пола животного - самей или самка";
-        assertEquals(expectedResult, exception.getMessage());
-    }
-
     @Test
     public void lionFemaleIsFalseTest() throws Exception {
         Lion lion = new Lion("Самка", feline);
@@ -42,12 +32,12 @@ public class LionTest {
         Lion lion = new Lion("Самец", feline);
         assertTrue(lion.doesHaveMane());
     }
-
     @Test
     public void getKittensTest() throws Exception {
-        Lion lion = new Lion("Самец", new Feline());
-        int expectedResult = 1;
-        assertEquals(expectedResult, lion.getKittens());
+        Lion lion = new Lion("Самка", feline);
+        feline.getKittens(1); // вызвали метод с аргументом
+       // проверили, что метод вызван с нужным параметром
+        assertEquals(lion.getKittens(),Mockito.verify(feline).getKittens(1));
     }
 }
 

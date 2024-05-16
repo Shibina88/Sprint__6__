@@ -13,13 +13,13 @@ public class FelineTest {
     public void felineFamilyTest() {
         Feline feline = new Feline();
         String expectedResult = "Кошачьи";
-        assertEquals(feline.getFamily(), expectedResult);
+        assertEquals(expectedResult, feline.getFamily());
     }
 
     @Test
     public void felineFoodIsMeatTest() throws Exception {
         Feline feline = new Feline();
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
-        assertEquals(feline.eatMeat(), expectedResult);
+        assertEquals(expectedResult, feline.eatMeat());
     }
 }
